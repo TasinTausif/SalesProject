@@ -56,13 +56,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('supplier.create') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Add Product</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('supplier.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Product List</p>
                             </a>
@@ -79,13 +79,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('customer.create') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Buy Product</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('customer.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Purchase List</p>
                             </a>

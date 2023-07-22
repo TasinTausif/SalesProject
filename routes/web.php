@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SupplierController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -47,3 +49,9 @@ Route::middleware( 'verified' )->group( function () {
 	Route::get( '/password/change', [HomeController::class, 'passwordChange'] )->name( 'password.change' );
 	Route::post( '/password/updated', [HomeController::class, 'passwordUpdate'] )->name( 'password.updated' );
 } );
+
+//__Supplier__//
+Route::resource( 'supplier', SupplierController::class )->except( 'show' );
+
+//__Customer__//
+Route::resource( 'customer', CustomerController::class )->except( 'show' );

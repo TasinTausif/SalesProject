@@ -6,7 +6,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Total Sales Tables</h1>
+                        <h1>Product Table</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                            <li class="breadcrumb-item active">Product Table</li>
+                        </ol>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -21,7 +27,7 @@
 
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">All Catagories</h3>
+                                <h3 class="card-title">All Products</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -29,24 +35,28 @@
                                     <thead>
                                         <tr>
                                             <th>Product Id</th>
+                                            <th>Seller Name</th>
                                             <th>Product Name</th>
+                                            <th>Quantity</th>
                                             <th>Size</th>
                                             <th>Purchased at</th>
-                                            <th>Sold at</th>
-                                            <th>Closing</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
-                                    {{-- <tbody>
-                                        @foreach ($categories as $key => $category)
+                                    <tbody>
+                                        @foreach ($products as $product)
                                             <tr>
-                                                <th scope="row">{{ ++$key }}</th>
-                                                <td>{{ $category->category_name }}</td>
-                                                <td>{{ $category->category_slug }}</td>
+                                                <td>{{ $product->product_id }}</td>
+                                                <td>{{ $product->user->name }}</td>
+                                                <td>{{ $product->product_name }}</td>
+                                                <td>{{ $product->quantity }}</td>
+                                                <td>{{ $product->size }}</td>
+                                                <td>{{ $product->buying_price }}</td>
                                                 <td>
-                                                    <a href="{{ route('category.edit', $category->id) }}"
+                                                    <a href="{{ route('supplier.edit', $product->id) }}"
                                                         class="btn btn-sm btn-warning d-inline">Edit</a>
 
-                                                    <form action="{{ route('category.destroy', $category->id) }}"
+                                                    <form action="{{ route('supplier.destroy', $product->id) }}"
                                                         method="post" class="d-inline">
                                                         @csrf
                                                         @method('delete')
@@ -55,7 +65,7 @@
                                                 </td>
                                             </tr>
                                         @endforeach
-                                    </tbody> --}}
+                                    </tbody>
                                 </table>
                             </div>
                             <!-- /.card-body -->
