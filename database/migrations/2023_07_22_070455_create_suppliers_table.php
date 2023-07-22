@@ -17,6 +17,7 @@ return new class extends Migration {
 			$table->integer( 'quantity' );
 			$table->string( 'size' );
 			$table->string( 'buying_price' );
+			$table->string( 'selling_price' );
 			$table->timestamps();
 		} );
 	}

@@ -16,6 +16,7 @@ class Supplier extends Model {
 		'quantity',
 		'size',
 		'buying_price',
+		'selling_price',
 	];
 
 	public function user() {

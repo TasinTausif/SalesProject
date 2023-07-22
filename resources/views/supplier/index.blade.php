@@ -39,7 +39,8 @@
                                             <th>Product Name</th>
                                             <th>Quantity</th>
                                             <th>Size</th>
-                                            <th>Purchased at</th>
+                                            <th>Buying Cost</th>
+                                            <th>Selling Price<i class="text-sm">(per pcs)</i></th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -52,6 +53,7 @@
                                                 <td>{{ $product->quantity }}</td>
                                                 <td>{{ $product->size }}</td>
                                                 <td>{{ $product->buying_price }}</td>
+                                                <td>{{ $product->selling_price }}</td>
                                                 <td>
                                                     <a href="{{ route('supplier.edit', $product->id) }}"
                                                         class="btn btn-sm btn-warning d-inline">Edit</a>
