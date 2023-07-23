@@ -38,7 +38,7 @@
                                 <label for="quantity" class="form-label">Quantity:</label>
                                 <input type="number" class="form-control @error('quantity') is-invalid @enderror"
                                     id="quantity" aria-describedby="quantityHelp" name="quantity"
-                                    value="{{ $product->quantity }}">
+                                    value="{{ $product->quantity }}" min="{{ $product->quantity }}">
                                 @error('quantity')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror

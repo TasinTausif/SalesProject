@@ -14,6 +14,7 @@ class Supplier extends Model {
 		'product_id',
 		'product_name',
 		'quantity',
+		'remaining',
 		'size',
 		'buying_price',
 		'selling_price',

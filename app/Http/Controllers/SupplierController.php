@@ -37,6 +37,8 @@ class SupplierController extends Controller {
 		$attributes['user_id'] = auth()->id();
 		$attributes['selling_price'] = $request->buying_price / $request->quantity;
 
+		$attributes['remaining'] = $request->quantity;
+
 		Supplier::create( $attributes );
 
 		toastr()->success( 'Product added successfully', 'Product Added!' );
@@ -64,6 +66,7 @@ class SupplierController extends Controller {
 		] );
 
 		$attributes['selling_price'] = $request->buying_price / $request->quantity;
+		$attributes['remaining'] = $request['quantity'];
 
 		Supplier::find( $id )->update( $attributes );
 

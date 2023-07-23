@@ -33,6 +33,7 @@
     <link rel="stylesheet"
         href="{{ asset('backend') }}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="{{ asset('backend') }}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    @stack('csscdn')
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -106,6 +107,7 @@
     <script src="{{ asset('backend') }}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
     <script src="{{ asset('backend') }}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="{{ asset('backend') }}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    @stack('jscdn')
 
     <!-- Page specific script -->
     <script>
@@ -127,6 +129,8 @@
             });
         });
     </script>
+
+    @stack('javascript')
 </body>
 
 </html>

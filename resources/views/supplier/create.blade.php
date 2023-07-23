@@ -35,7 +35,7 @@
                                 <label for="quantity" class="form-label">Quantity:</label>
                                 <input type="number" class="form-control @error('quantity') is-invalid @enderror"
                                     id="quantity" aria-describedby="quantityHelp" name="quantity"
-                                    value="{{ old('quantity') }}">
+                                    value="{{ old('quantity') }}" min="1">
                                 @error('quantity')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -60,7 +60,7 @@
                                 <label for="buying_price" class="form-label">Buying Price:</label>
                                 <input type="number" class="form-control @error('buying_price') is-invalid @enderror"
                                     id="buying_price" aria-describedby="buyingPriceHelp" name="buying_price"
-                                    value="{{ old('buying_price') }}">
+                                    value="{{ old('buying_price') }}" min="1">
                                 @error('buying_price')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror

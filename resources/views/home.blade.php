@@ -28,34 +28,26 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Product Id</th>
+                                            <th>Supplier Name</th>
                                             <th>Product Name</th>
                                             <th>Size</th>
-                                            <th>Purchased at</th>
-                                            <th>Sold at</th>
-                                            <th>Closing</th>
+                                            <th>Opening Quantity</th>
+                                            <th>Sold Quantity</th>
+                                            <th>Closing Quantity</th>
                                         </tr>
                                     </thead>
-                                    {{-- <tbody>
-                                        @foreach ($categories as $key => $category)
+                                    <tbody>
+                                        @foreach ($data as $item)
                                             <tr>
-                                                <th scope="row">{{ ++$key }}</th>
-                                                <td>{{ $category->category_name }}</td>
-                                                <td>{{ $category->category_slug }}</td>
-                                                <td>
-                                                    <a href="{{ route('category.edit', $category->id) }}"
-                                                        class="btn btn-sm btn-warning d-inline">Edit</a>
-
-                                                    <form action="{{ route('category.destroy', $category->id) }}"
-                                                        method="post" class="d-inline">
-                                                        @csrf
-                                                        @method('delete')
-                                                        <button class="btn btn-sm btn-danger">Delete</button>
-                                                    </form>
-                                                </td>
+                                                <td>{{ $item->user->name }}</td>
+                                                <td>{{ $item->product_name }}</td>
+                                                <td>{{ $item->size }}</td>
+                                                <td>{{ $item->quantity }}</td>
+                                                <td>{{ $item->quantity - $item->remaining }}</td>
+                                                <td>{{ $item->remaining }}</td>
                                             </tr>
                                         @endforeach
-                                    </tbody> --}}
+                                    </tbody>
                                 </table>
                             </div>
                             <!-- /.card-body -->

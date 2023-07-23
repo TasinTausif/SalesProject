@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller {
@@ -9,48 +11,32 @@ class CustomerController extends Controller {
 	 * Display a listing of the resource.
 	 */
 	public function index() {
-		return view( 'customer.index' );
+		$customers = Customer::all();
+		return view( 'customer.index', compact( 'customers' ) );
 	}
 
 	/**
 	 * Show the form for creating a new resource.
 	 */
 	public function create() {
-		return view( 'customer.create' );
+		$items = Supplier::all();
+		return view( 'customer.create', compact( 'items' ) );
 	}
 
 	/**
 	 * Store a newly created resource in storage.
 	 */
-	public function store( Request $request ) {
-		//
-	}
+	public function store( Request $request, string $id ) {
+		$attributes = $request->validate( [
+			'quantity' => 'required',
+		] );
 
-	/**
-	 * Display the specified resource.
-	 */
-	public function show( string $id ) {
-		//
-	}
+		$product = Supplier::find( $id );
 
-	/**
-	 * Show the form for editing the specified resource.
-	 */
-	public function edit( string $id ) {
-		//
-	}
+		$attributes['user_id'] = auth()->id;
+		$attributes['product_id'] = $product->id;
+		$attributes['supplier_id'] = $product->user->name;
 
-	/**
-	 * Update the specified resource in storage.
-	 */
-	public function update( Request $request, string $id ) {
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 */
-	public function destroy( string $id ) {
-		//
+		dd( $attributes );
 	}
 }

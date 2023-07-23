@@ -9,16 +9,16 @@ return new class extends Migration {
 	 * Run the migrations.
 	 */
 	public function up(): void{
-		Schema::create( 'suppliers', function ( Blueprint $table ) {
+		Schema::create( 'customers', function ( Blueprint $table ) {
 			$table->id();
 			$table->foreignId( 'user_id' )->constrained()->cascadeOnDelete();
-			$table->string( 'product_id' )->unique();
+			$table->foreignId( 'supplier_id' )->constrained()->cascadeOnDelete();
+			$table->string( 'supplier_name' );
 			$table->string( 'product_name' );
-			$table->integer( 'quantity' );
-			$table->integer( 'remaining' )->default( 0 );
 			$table->string( 'size' );
-			$table->string( 'buying_price' );
-			$table->string( 'selling_price' );
+			$table->integer( 'price' );
+			$table->string( 'quantity' );
+			$table->integer( 'total_price' );
 			$table->timestamps();
 		} );
 	}
@@ -27,6 +27,6 @@ return new class extends Migration {
 	 * Reverse the migrations.
 	 */
 	public function down(): void{
-		Schema::dropIfExists( 'suppliers' );
+		Schema::dropIfExists( 'customers' );
 	}
 };

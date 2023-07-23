@@ -34,34 +34,28 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Product Id</th>
+                                            <th>Customer Name</th>
+                                            <th>Seller Name</th>
                                             <th>Product Name</th>
                                             <th>Size</th>
+                                            <th>Quantity</th>
                                             <th>Purchased at</th>
-                                            <th>Sold at</th>
-                                            <th>Closing</th>
+                                            <th>Total Price</th>
                                         </tr>
                                     </thead>
-                                    {{-- <tbody>
-                                        @foreach ($categories as $key => $category)
+                                    <tbody>
+                                        @foreach ($customers as $key => $customer)
                                             <tr>
-                                                <th scope="row">{{ ++$key }}</th>
-                                                <td>{{ $category->category_name }}</td>
-                                                <td>{{ $category->category_slug }}</td>
-                                                <td>
-                                                    <a href="{{ route('category.edit', $category->id) }}"
-                                                        class="btn btn-sm btn-warning d-inline">Edit</a>
-
-                                                    <form action="{{ route('category.destroy', $category->id) }}"
-                                                        method="post" class="d-inline">
-                                                        @csrf
-                                                        @method('delete')
-                                                        <button class="btn btn-sm btn-danger">Delete</button>
-                                                    </form>
-                                                </td>
+                                                <td>{{ $customer->user->name }}</td>
+                                                <td>{{ $customer->supplier->user->name }}</td>
+                                                <td>{{ $customer->supplier->product_name }}</td>
+                                                <td>{{ $customer->supplier->size }}</td>
+                                                <td>{{ $customer->quantity }}</td>
+                                                <td>{{ $customer->supplier->selling_price }}</td>
+                                                <td>{{ $customer->total_price }}</td>
                                             </tr>
                                         @endforeach
-                                    </tbody> --}}
+                                    </tbody>
                                 </table>
                             </div>
                             <!-- /.card-body -->
