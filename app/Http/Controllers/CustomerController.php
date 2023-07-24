@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller {
 	/**
@@ -26,7 +27,7 @@ class CustomerController extends Controller {
 	/**
 	 * Store a newly created resource in storage.
 	 */
-	public function store( Request $request, string $id ) {
+	public function store( string $id, Request $request ) {
 		$attributes = $request->validate( [
 			'quantity' => 'required',
 		] );
@@ -34,9 +35,25 @@ class CustomerController extends Controller {
 		$product = Supplier::find( $id );
 
 		$attributes['user_id'] = auth()->id;
-		$attributes['product_id'] = $product->id;
 		$attributes['supplier_id'] = $product->user->name;
+		$attributes['total_price'] = $product['selling_price'] * $request->quantity;
+
+		$var = $product['remaining'] - $request->quantity;
 
 		dd( $attributes );
+		PHP_EOL;
+		dd( $var );
+		// $product->update( $product['remaining'] = $var );
+
+		// Customer::create( $attributes );
+
+		// toastr()->success( 'Product Purchase Success', 'Purchased!' );
+		// return redirect()->back();
+	}
+
+	public function show( string $id ) {
+		$product = Supplier::find( $id );
+
+		return view( 'customer.show', compact( 'product' ) );
 	}
 }

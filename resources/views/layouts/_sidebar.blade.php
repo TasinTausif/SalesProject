@@ -87,7 +87,7 @@
                         <li class="nav-item">
                             <a href="{{ route('customer.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Purchase List</p>
+                                <p>Purchase History</p>
                             </a>
                         </li>
                     </ul>

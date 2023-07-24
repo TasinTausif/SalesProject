@@ -6,12 +6,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Product Table</h1>
+                        <h1>Product List</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                            <li class="breadcrumb-item active">Product Table</li>
+                            <li class="breadcrumb-item active">Product List</li>
                         </ol>
                     </div>
                 </div>
@@ -34,7 +34,6 @@
                                 <table class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Seller Name</th>
                                             <th>Product Name</th>
                                             <th>Size</th>
                                             <th>Price<i class="text-sm">(per pcs)</i></th>
@@ -45,17 +44,13 @@
                                     <tbody>
                                         @foreach ($items as $item)
                                             <tr>
-                                                <td scope="row">{{ $item->user->name }}</td>
                                                 <td scope="row">{{ $item->product_name }}</td>
                                                 <td scope="row">{{ $item->size }}</td>
                                                 <td scope="row">{{ $item->selling_price }}</td>
                                                 <td scope="row">{{ $item->remaining }}</td>
                                                 <td scope="row">
-                                                    <form method="POST" action="{{ route('customer.store', $item->id) }}">
-                                                        <input type="number" min="1" max="{{ $item->remaining }}"
-                                                            class="d-inline">
-                                                        <button class="btn btn-sm btn-success">Buy</button>
-                                                    </form>
+                                                    <a href="{{ route('customer.show', $item->id) }}"
+                                                        class="btn btn-sm btn-success">Buy</a>
                                                 </td>
                                             </tr>
                                         @endforeach

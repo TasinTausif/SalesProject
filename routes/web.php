@@ -25,7 +25,7 @@ Route::get( '/', function () {
 
 Auth::routes();
 
-Route::get( '/home', [HomeController::class, 'index'] )->name( 'home' )->middleware( 'verified' );
+Route::get( '/home', [HomeController::class, 'index'] )->name( 'home' )->middleware( 'auth' );
 
 //__Email Verification__//
 Route::get( '/email/verify', function () {
@@ -54,4 +54,4 @@ Route::middleware( 'verified' )->group( function () {
 Route::resource( 'supplier', SupplierController::class )->except( 'show' )->middleware( 'verified' );
 
 //__Customer__//
-Route::resource( 'customer', CustomerController::class )->only( 'create', 'store', 'index' )->middleware( 'verified' );
+Route::resource( 'customer', CustomerController::class )->only( 'create', 'store', 'show', 'index' )->middleware( 'verified' );
