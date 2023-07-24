@@ -49,8 +49,12 @@
                                                 <td scope="row">{{ $item->selling_price }}</td>
                                                 <td scope="row">{{ $item->remaining }}</td>
                                                 <td scope="row">
-                                                    <a href="{{ route('customer.show', $item->id) }}"
-                                                        class="btn btn-sm btn-success">Buy</a>
+                                                    @if ($item->remaining > 0)
+                                                        <a href="{{ route('customer.show', $item->id) }}"
+                                                            class="btn btn-sm btn-success">Buy</a>
+                                                    @else
+                                                        <button type="button" class="btn btn-danger">Stock Out</button>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach

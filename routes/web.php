@@ -19,9 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get( '/', function () {
-	return view( 'home' );
-} )->middleware( 'auth' );
+Route::get( '/', [HomeController::class, 'index'] )->middleware( 'auth' );
 
 Auth::routes();
 
@@ -54,4 +52,4 @@ Route::middleware( 'verified' )->group( function () {
 Route::resource( 'supplier', SupplierController::class )->except( 'show' )->middleware( 'verified' );
 
 //__Customer__//
-Route::resource( 'customer', CustomerController::class )->only( 'create', 'store', 'show', 'index' )->middleware( 'verified' );
+Route::resource( 'customer', CustomerController::class )->only( 'index', 'create', 'show', 'update' )->middleware( 'verified' );

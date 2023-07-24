@@ -25,30 +25,26 @@ class CustomerController extends Controller {
 	}
 
 	/**
-	 * Store a newly created resource in storage.
+	 * Update the specified resource in storage.
 	 */
-	public function store( string $id, Request $request ) {
+	public function update( string $id, Request $request ) {
 		$attributes = $request->validate( [
 			'quantity' => 'required',
 		] );
 
 		$product = Supplier::find( $id );
 
-		$attributes['user_id'] = auth()->id;
-		$attributes['supplier_id'] = $product->user->name;
+		$attributes['user_id'] = auth()->id();
+		$attributes['supplier_id'] = $product->id;
 		$attributes['total_price'] = $product['selling_price'] * $request->quantity;
 
+		Customer::create( $attributes );
+
 		$var = $product['remaining'] - $request->quantity;
+		$product->update( array( 'remaining' => $var ) );
 
-		dd( $attributes );
-		PHP_EOL;
-		dd( $var );
-		// $product->update( $product['remaining'] = $var );
-
-		// Customer::create( $attributes );
-
-		// toastr()->success( 'Product Purchase Success', 'Purchased!' );
-		// return redirect()->back();
+		toastr()->success( 'Product Purchase Success', 'Purchased!' );
+		return redirect( route( 'customer.create' ) );
 	}
 
 	public function show( string $id ) {

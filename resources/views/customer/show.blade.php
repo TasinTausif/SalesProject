@@ -8,8 +8,9 @@
                     <div class="card-header">{{ __('Product Details') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('customer.store', $product->id) }}">
+                        <form method="POST" action="{{ route('customer.update', $product->id) }}">
                             @csrf
+                            @method('patch')
 
                             <div class="mb-3">
                                 <label for="product_id" class="form-label">Product ID:</label>
@@ -46,7 +47,7 @@
                                 <label for="quantity" class="form-label">Quantity:</label>
                                 <input type="number" class="form-control @error('quantity') is-invalid @enderror"
                                     id="quantity" aria-describedby="quantityHelp" name="quantity"
-                                    value="{{ old('quantity') }}" min="1" max="{{ $product->quantity }}">
+                                    value="{{ old('quantity') }}" min="1" max="{{ $product->remaining }}">
                                 @error('quantity')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror

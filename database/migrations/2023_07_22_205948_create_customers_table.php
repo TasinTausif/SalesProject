@@ -13,10 +13,6 @@ return new class extends Migration {
 			$table->id();
 			$table->foreignId( 'user_id' )->constrained()->cascadeOnDelete();
 			$table->foreignId( 'supplier_id' )->constrained()->cascadeOnDelete();
-			$table->string( 'supplier_name' );
-			$table->string( 'product_name' );
-			$table->string( 'size' );
-			$table->integer( 'price' );
 			$table->string( 'quantity' );
 			$table->integer( 'total_price' );
 			$table->timestamps();
