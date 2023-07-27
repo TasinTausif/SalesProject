@@ -48,11 +48,13 @@ Route::middleware( 'verified' )->group( function () {
 } );
 
 //__Supplier__//
-Route::resource( 'supplier', SupplierController::class )->except( 'create', 'show', 'edit' )->middleware( 'verified' );
-Route::get( '/supplier/quantity', [SupplierController::class, 'quantity'] )->name( 'supplier.quantity' );
-Route::get( '/supplier/quantity/{id}/edit', [SupplierController::class, 'quantity_edit'] )->name( 'supplier.quantity_edit' );
-Route::any( '/supplier/create', [SupplierController::class, 'create'] )->name( 'supplier.create' );
-Route::any( '/supplier/{supplier}/edit', [SupplierController::class, 'edit'] )->name( 'supplier.edit' );
+Route::middleware( 'verified' )->group( function () {
+	Route::resource( 'supplier', SupplierController::class )->except( 'create', 'show', 'edit' );
+	Route::get( '/supplier/quantity', [SupplierController::class, 'quantity'] )->name( 'supplier.quantity' );
+	Route::get( '/supplier/quantity/{id}/edit', [SupplierController::class, 'quantity_edit'] )->name( 'supplier.quantity_edit' );
+	Route::any( '/supplier/create', [SupplierController::class, 'create'] )->name( 'supplier.create' );
+	Route::any( '/supplier/{supplier}/edit', [SupplierController::class, 'edit'] )->name( 'supplier.edit' );
+} );
 
 //__Customer__//
 Route::resource( 'customer', CustomerController::class )->only( 'index', 'create', 'show', 'update' )->middleware( 'verified' );

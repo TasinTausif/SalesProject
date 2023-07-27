@@ -30,10 +30,10 @@ class CustomerController extends Controller {
 	 */
 	public function update( string $id, Request $request ) {
 		$attributes = $request->validate( [
-			's'  => 'required',
-			'm'  => 'required',
-			'l'  => 'required',
-			'xl' => 'required',
+			's'  => 'required|numeric|min:0',
+			'm'  => 'required|numeric|min:0',
+			'l'  => 'required|numeric|min:0',
+			'xl' => 'required|numeric|min:0',
 		] );
 
 		$product = Supplier::find( $id );
