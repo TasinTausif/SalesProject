@@ -14,9 +14,7 @@ return new class extends Migration {
 			$table->foreignId( 'user_id' )->constrained()->cascadeOnDelete();
 			$table->string( 'product_id' )->unique();
 			$table->string( 'product_name' );
-			$table->integer( 'quantity' );
-			$table->integer( 'remaining' )->default( 0 );
-			$table->string( 'size' );
+			$table->foreignId( 'quantity_id' )->constrained()->cascadeOnDelete();
 			$table->string( 'buying_price' );
 			$table->string( 'selling_price' );
 			$table->timestamps();

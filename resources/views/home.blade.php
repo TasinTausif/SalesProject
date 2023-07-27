@@ -30,7 +30,6 @@
                                         <tr>
                                             <th>Supplier Name</th>
                                             <th>Product Name</th>
-                                            <th>Size</th>
                                             <th>Opening Quantity</th>
                                             <th>Sold Quantity</th>
                                             <th>Closing Quantity</th>
@@ -41,10 +40,9 @@
                                             <tr>
                                                 <td>{{ $item->user->name }}</td>
                                                 <td>{{ $item->product_name }}</td>
-                                                <td>{{ $item->size }}</td>
-                                                <td>{{ $item->quantity }}</td>
-                                                <td>{{ $item->quantity - $item->remaining }}</td>
-                                                <td>{{ $item->remaining }}</td>
+                                                <td>{{ $item->quantity->total }}</td>
+                                                <td>{{ $item->quantity->total - $item->quantity->total_remaining }}</td>
+                                                <td>{{ $item->quantity->total_remaining }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>

@@ -13,7 +13,10 @@ return new class extends Migration {
 			$table->id();
 			$table->foreignId( 'user_id' )->constrained()->cascadeOnDelete();
 			$table->foreignId( 'supplier_id' )->constrained()->cascadeOnDelete();
-			$table->string( 'quantity' );
+			$table->integer( 's' );
+			$table->integer( 'm' );
+			$table->integer( 'l' );
+			$table->integer( 'xl' );
 			$table->integer( 'total_price' );
 			$table->timestamps();
 		} );

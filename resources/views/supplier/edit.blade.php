@@ -13,6 +13,24 @@
                             @method('patch')
 
                             <div class="mb-3">
+                                <label for="quantity_id" class="form-label">Select Quantity First : </label>
+                                <a href="{{ route('supplier.quantity_edit', $product->id) }}"
+                                    class="btn btn-info mb-2 mx-3">Quantity</a>
+                                <input type="number"
+                                    class="d-inline @error('quantity_id') is-invalid @enderror form-control"
+                                    id="quantity_id" aria-describedby="quantityIdHelp" name="quantity_id"
+                                    value="{{ request()->get('s') + request()->get('m') + request()->get('l') + request()->get('xl') }}"
+                                    readonly>
+                                <input type="hidden" name="s" value="{{ request()->get('s') }}">
+                                <input type="hidden" name="m" value="{{ request()->get('m') }}">
+                                <input type="hidden" name="l" value="{{ request()->get('l') }}">
+                                <input type="hidden" name="xl" value="{{ request()->get('xl') }}">
+                                @error('quantity_id')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
                                 <label for="user_id" class="form-label">User: </label>
                                 <input type="text" class="form-control" id="user_id" aria-describedby="userIdHelp"
                                     name="user_id" value="{{ $product->user->name }}" readonly>
@@ -30,32 +48,6 @@
                                     id="product_name" aria-describedby="productNameHelp" name="product_name"
                                     value="{{ $product->product_name }}">
                                 @error('product_name')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="quantity" class="form-label">Quantity:</label>
-                                <input type="number" class="form-control @error('quantity') is-invalid @enderror"
-                                    id="quantity" aria-describedby="quantityHelp" name="quantity"
-                                    value="{{ $product->quantity }}" min="{{ $product->quantity }}">
-                                @error('quantity')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="size" class="form-label">Size:</label>
-
-                                <select name="size" id="size"
-                                    class="form-control @error('size') is-invalid @enderror" aria-describedby="sizeHelp">
-                                    <option value="s" @if ('s' == $product->size) selected @endif>Small</option>
-                                    <option value="m" @if ('m' == $product->size) selected @endif>Medium</option>
-                                    <option value="l" @if ('l' == $product->size) selected @endif>Large</option>
-                                    <option value="xl" @if ('xl' == $product->size) selected @endif>Extra Large
-                                    </option>
-                                </select>
-                                @error('size')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>

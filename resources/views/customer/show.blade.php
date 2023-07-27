@@ -31,24 +31,59 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="size" class="form-label">Size:</label>
-                                <input type="text" class="form-control" id="size" aria-describedby="sizeHelp"
-                                    value="{{ $product->size }}" readonly>
-                            </div>
-
-                            <div class="mb-3">
                                 <label for="selling_price" class="form-label">Selling Price:</label>
                                 <input type="number" class="form-control" id="selling_price"
-                                    aria-describedby="sellingPriceHelp" value="{{ $product->selling_price }}" readonly>
+                                    aria-describedby="sellingPriceHelp"
+                                    value="{{ number_format($product->selling_price, 3) }}" readonly>
                             </div>
 
+                            <label class="form-label"><i>Available Sizes:</i></label>
+                            <br>
 
+                            <label class="form-label">S size available:
+                                {{ $product->quantity->remaining_s }}</label>
                             <div class="mb-3">
-                                <label for="quantity" class="form-label">Quantity:</label>
-                                <input type="number" class="form-control @error('quantity') is-invalid @enderror"
-                                    id="quantity" aria-describedby="quantityHelp" name="quantity"
-                                    value="{{ old('quantity') }}" min="1" max="{{ $product->remaining }}">
-                                @error('quantity')
+                                <label for="s" class="form-label">S:</label>
+                                <input type="number" class="form-control" id="s" aria-describedby="sHelp"
+                                    value="{{ old('s') }}" min="0" max="{{ $product->quantity->remaining_s }}"
+                                    name="s">
+                                @error('s')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <label class="form-label">M size available:
+                                {{ $product->quantity->remaining_m }}</label>
+                            <div class="mb-3">
+                                <label for="m" class="form-label">M:</label>
+                                <input type="number" class="form-control" id="m" aria-describedby="mHelp"
+                                    value="{{ old('m') }}" min="0" max="{{ $product->quantity->remaining_m }}"
+                                    name="m">
+                                @error('m')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <label class="form-label">L size available:
+                                {{ $product->quantity->remaining_l }}</label>
+                            <div class="mb-3">
+                                <label for="l" class="form-label">L:</label>
+                                <input type="number" class="form-control" id="l" aria-describedby="lHelp"
+                                    value="{{ old('l') }}" min="0" max="{{ $product->quantity->remaining_l }}"
+                                    name="l">
+                                @error('l')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <label class="form-label">XL size available:
+                                {{ $product->quantity->remaining_xl }}</label>
+                            <div class="mb-3">
+                                <label for="xl" class="form-label">XL:</label>
+                                <input type="number" class="form-control" id="xl" aria-describedby="xlHelp"
+                                    value="{{ old('xl') }}" min="0"
+                                    max="{{ $product->quantity->remaining_xl }}" name="xl">
+                                @error('xl')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>

@@ -12,6 +12,23 @@
                             @csrf
 
                             <div class="mb-3">
+                                <label for="quantity_id" class="form-label">Select Quantity First : </label>
+                                <a href="{{ route('supplier.quantity') }}" class="btn btn-info mb-2 mx-3">Quantity</a>
+                                <input type="number"
+                                    class="d-inline @error('quantity_id') is-invalid @enderror form-control"
+                                    id="quantity_id" aria-describedby="quantityIdHelp" name="quantity_id"
+                                    value="{{ request()->get('s') + request()->get('m') + request()->get('l') + request()->get('xl') }}"
+                                    readonly>
+                                <input type="hidden" name="s" value="{{ request()->get('s') }}">
+                                <input type="hidden" name="m" value="{{ request()->get('m') }}">
+                                <input type="hidden" name="l" value="{{ request()->get('l') }}">
+                                <input type="hidden" name="xl" value="{{ request()->get('xl') }}">
+                                @error('quantity_id')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
                                 <label for="product_id" class="form-label">Product ID:</label>
                                 <input type="text" class="form-control @error('product_id') is-invalid @enderror"
                                     id="product_id" aria-describedby="productIdHelp" name="product_id"
@@ -27,31 +44,6 @@
                                     id="product_name" aria-describedby="productNameHelp" name="product_name"
                                     value="{{ old('product_name') }}">
                                 @error('product_name')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="quantity" class="form-label">Quantity:</label>
-                                <input type="number" class="form-control @error('quantity') is-invalid @enderror"
-                                    id="quantity" aria-describedby="quantityHelp" name="quantity"
-                                    value="{{ old('quantity') }}" min="1">
-                                @error('quantity')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="size" class="form-label">Size:</label>
-
-                                <select name="size" id="size"
-                                    class="form-control @error('size') is-invalid @enderror" aria-describedby="sizeHelp">
-                                    <option value="s">Small</option>
-                                    <option value="m">Medium</option>
-                                    <option value="l">Large</option>
-                                    <option value="xl">Extra Large</option>
-                                </select>
-                                @error('size')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>

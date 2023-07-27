@@ -35,7 +35,6 @@
                                     <thead>
                                         <tr>
                                             <th>Product Name</th>
-                                            <th>Size</th>
                                             <th>Price<i class="text-sm">(per pcs)</i></th>
                                             <th>Available Quantity</th>
                                             <th>Action</th>
@@ -45,11 +44,10 @@
                                         @foreach ($items as $item)
                                             <tr>
                                                 <td scope="row">{{ $item->product_name }}</td>
-                                                <td scope="row">{{ $item->size }}</td>
-                                                <td scope="row">{{ $item->selling_price }}</td>
-                                                <td scope="row">{{ $item->remaining }}</td>
+                                                <td scope="row">{{ number_format($item->selling_price, 3) }}</td>
+                                                <td scope="row">{{ $item->quantity->total_remaining }}</td>
                                                 <td scope="row">
-                                                    @if ($item->remaining > 0)
+                                                    @if ($item->quantity->total_remaining > 0)
                                                         <a href="{{ route('customer.show', $item->id) }}"
                                                             class="btn btn-sm btn-success">Buy</a>
                                                     @else

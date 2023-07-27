@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Quantity;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,19 +30,29 @@ class CustomerController extends Controller {
 	 */
 	public function update( string $id, Request $request ) {
 		$attributes = $request->validate( [
-			'quantity' => 'required',
+			's'  => 'required',
+			'm'  => 'required',
+			'l'  => 'required',
+			'xl' => 'required',
 		] );
 
 		$product = Supplier::find( $id );
+		$qt = Quantity::find( $product->quantity_id );
+
+		$quantity = $attributes['s'] + $attributes['m'] + $attributes['l'] + $attributes['xl'];
 
 		$attributes['user_id'] = auth()->id();
 		$attributes['supplier_id'] = $product->id;
-		$attributes['total_price'] = $product['selling_price'] * $request->quantity;
+		$attributes['total_price'] = $product['selling_price'] * $quantity;
 
 		Customer::create( $attributes );
 
-		$var = $product['remaining'] - $request->quantity;
-		$product->update( array( 'remaining' => $var ) );
+		$var['remaining_s'] = $qt->remaining_s - $request->s;
+		$var['remaining_m'] = $qt->remaining_m - $request->m;
+		$var['remaining_l'] = $qt->remaining_l - $request->l;
+		$var['remaining_xl'] = $qt->remaining_xl - $request->xl;
+		$var['total_remaining'] = $var['remaining_s'] + $var['remaining_m'] + $var['remaining_l'] + $var['remaining_xl'];
+		$qt->update( $var );
 
 		toastr()->success( 'Product Purchase Success', 'Purchased!' );
 		return redirect( route( 'customer.create' ) );

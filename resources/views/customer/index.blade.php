@@ -37,8 +37,10 @@
                                             <th>Customer Name</th>
                                             <th>Seller Name</th>
                                             <th>Product Name</th>
-                                            <th>Size</th>
-                                            <th>Quantity</th>
+                                            <th>S size Purchased</th>
+                                            <th>M size Purchased</th>
+                                            <th>L size Purchased</th>
+                                            <th>XL size Purchased</th>
                                             <th>Purchased at</th>
                                             <th>Total Price</th>
                                         </tr>
@@ -49,9 +51,11 @@
                                                 <td>{{ $customer->user->name }}</td>
                                                 <td>{{ $customer->supplier->user->name }}</td>
                                                 <td>{{ $customer->supplier->product_name }}</td>
-                                                <td>{{ $customer->supplier->size }}</td>
-                                                <td>{{ $customer->quantity }}</td>
-                                                <td>{{ $customer->supplier->selling_price }}</td>
+                                                <td>{{ $customer->s }}</td>
+                                                <td>{{ $customer->m }}</td>
+                                                <td>{{ $customer->l }}</td>
+                                                <td>{{ $customer->xl }}</td>
+                                                <td>{{ number_format($customer->supplier->selling_price, 3) }}</td>
                                                 <td>{{ $customer->total_price }}</td>
                                             </tr>
                                         @endforeach
